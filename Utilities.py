@@ -2,7 +2,11 @@ import cv2
 
 webcam = cv2.VideoCapture(0)
 
-def video_capture():
+
+def video_capture(on_space_callback=None):
+    print("Press SPACE to analyze sign")
+    print("Press Q to quit")
+
     while True:
         ret, frame = webcam.read()
 
@@ -13,8 +17,8 @@ def video_capture():
 
             if key == ord('q'):
                 break
-    webcam.release()
-    cv2.destroyAllWindows()
+            elif key == ord(' ') and on_space_callback:
+                on_space_callback(frame)
 
 if __name__ == "__main__":
     video_capture()
