@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-model = SignLanguageModel(model_path="./model/checkpoint-3806")
+model = SignLanguageModel(model_path="./model_handler.py")
 
 st.title("Sign Language Recognition")
 
