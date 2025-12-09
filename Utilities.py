@@ -1,24 +1,41 @@
 import cv2
+from transformers import pipeline
+from PIL import Image
 
-webcam = cv2.VideoCapture(0)
+pipe = pipeline("image-classification", model="prithivMLmods/Alphabet-Sign-Language-Detection", use_fast=True)
 
 
-def video_capture(on_space_callback=None):
+def analyze_frame(frame):
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    pil_image = Image.fromarray(rgb_frame)
+
+    result = pipe(pil_image)
+
+    print("\n=== Sign Detection ===")
+    for pred in result:
+        print(f"{pred['label']}: {pred['score']:.2%}")
+    print("===================\n")
+
+
+def video_capture():
+    webcam = cv2.VideoCapture(0)
+
     print("Press SPACE to analyze sign")
     print("Press Q to quit")
 
     while True:
         ret, frame = webcam.read()
 
-        if ret == True:
-            cv2.imshow('Cam', frame)
+        if ret:
+            cv2.imshow('Sign Language Detection', frame)
 
             key = cv2.waitKey(1)
 
             if key == ord('q'):
                 break
-            elif key == ord(' ') and on_space_callback:
-                on_space_callback(frame)
+            elif key == ord(' '):
+                analyze_frame(frame)
 
-if __name__ == "__main__":
-    video_capture()
+    webcam.release()
+    cv2.destroyAllWindows()
+
