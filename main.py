@@ -3,7 +3,7 @@ from model_handler import SignLanguageModel
 
 
 def main():
-    model = SignLanguageModel(model_path="./model/checkpoint-3806")
+    model = SignLanguageModel(model_path="./model")
     def on_space_pressed(frame):
         print("\nAnalyzing sign...")
         try:

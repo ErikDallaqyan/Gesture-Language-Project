@@ -5,7 +5,7 @@ from PIL import Image
 
 
 class SignLanguageModel:
-    def __init__(self, model_path="./model/checkpoint-3806"):
+    def __init__(self, model_path="./model"):
         print(f"Loading model from {model_path}...")
         self.processor = AutoImageProcessor.from_pretrained(model_path)
         self.model = AutoModelForImageClassification.from_pretrained(model_path)
