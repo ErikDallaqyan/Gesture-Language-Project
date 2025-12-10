@@ -1,0 +1,14 @@
+DATASET_ZIP = "Dataset.zip"
+DATASET_DIR = "Dataset"
+
+TRAIN_DIR = "Dataset/training_set"
+TEST_DIR = "Dataset/test_set"
+
+IMAGE_SIZE = (64, 64)
+BATCH_SIZE = 32
+EPOCHS = 25
+STEPS_PER_EPOCH = 800
+VALIDATION_STEPS = 6500
+
+LEARNING_RATE = 0.01
+NUM_CLASSES = 26  # A–Z
